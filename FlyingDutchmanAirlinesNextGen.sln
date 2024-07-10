@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlyingDutchmanAirlines", "FlyingDutchmanAirlines\FlyingDutchmanAirlines.csproj", "{86AA9565-3CAE-41C8-A95F-1EC0127744B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlyingDutchmanAirlines_Tests", "FlyingDutchmanAirlines_Tests\FlyingDutchmanAirlines_Tests.csproj", "{B0F653EE-E3E6-4E58-B43F-CA368FB56DAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{86AA9565-3CAE-41C8-A95F-1EC0127744B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86AA9565-3CAE-41C8-A95F-1EC0127744B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86AA9565-3CAE-41C8-A95F-1EC0127744B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0F653EE-E3E6-4E58-B43F-CA368FB56DAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0F653EE-E3E6-4E58-B43F-CA368FB56DAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0F653EE-E3E6-4E58-B43F-CA368FB56DAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0F653EE-E3E6-4E58-B43F-CA368FB56DAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
