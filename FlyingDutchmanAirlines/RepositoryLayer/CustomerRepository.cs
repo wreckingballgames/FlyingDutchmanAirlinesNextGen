@@ -2,9 +2,10 @@ namespace FlyingDutchmanAirlines.RepositoryLayer
 {
     public class CustomerRepository
     {
-        public void CreateCustomer(string name)
+        public bool CreateCustomer(string name)
         {
-            
+            // PLACEHOLDER
+            return false;
         }
     }
 }
