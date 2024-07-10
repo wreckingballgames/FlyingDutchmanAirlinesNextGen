@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "mq2k5uUcRLhKoPSLKK7+3F8JNtRZjB9lOSYKTfXUHRuRXqOL2uiiP59/db1IiAwWpNg0EthVtZHWDCbyXe6mzA==",
+  "success": true,
+  "projectFilePath": "/home/raymond/repos/FlyingDutchmanAirlinesNextGen/FlyingDutchmanAirlines/FlyingDutchmanAirlines.csproj",
+  "expectedPackageFiles": [
+    "/home/raymond/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.6/microsoft.aspnetcore.app.ref.8.0.6.nupkg.sha512"
+  ],
+  "logs": []
+}
