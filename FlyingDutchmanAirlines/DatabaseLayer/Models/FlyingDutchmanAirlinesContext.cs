@@ -98,9 +98,5 @@ public class FlyingDutchmanAirlinesContext : DbContext
                 .HasForeignKey(d => d.Origin)
                 .OnDelete(DeleteBehavior.ClientSetNull);
         });
-
-        // OnModelCreatingPartial(modelBuilder);
     }
-
-    // partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
