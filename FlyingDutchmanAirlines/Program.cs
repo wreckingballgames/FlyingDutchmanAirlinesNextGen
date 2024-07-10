@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
 namespace FlyingDutchmanAirlines
 {
@@ -7,7 +8,15 @@ namespace FlyingDutchmanAirlines
     {
         static void Main(string[] args)
         {
-            
+            InitializeHost();
         }
+
+        private static void InitializeHost() =>
+            Host.CreateDefaultBuilder().ConfigureWebHostDefaults(
+            builder =>
+            {
+                builder.UseUrls("http;//0.0.0.0:8080");
+            }
+            ).Build().Run();
     }
 }
