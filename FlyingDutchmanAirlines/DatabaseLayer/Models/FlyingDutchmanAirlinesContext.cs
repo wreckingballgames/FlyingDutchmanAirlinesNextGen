@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FlyingDutchmanAirlines.DatabaseLayer.Models;
 
-public partial class FlyingDutchmanAirlinesContext : DbContext
+public class FlyingDutchmanAirlinesContext : DbContext
 {
     public FlyingDutchmanAirlinesContext()
     {
@@ -24,7 +24,6 @@ public partial class FlyingDutchmanAirlinesContext : DbContext
     public virtual DbSet<Flight> Flights { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=tcp:codelikeacsharppro.database.windows.net,1433;Initial Catalog=FlyingDutchmanAirlines;Persist Security Info=False;User Id=dev;Password=FlyingDutchmanAirlines1972!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -92,8 +91,8 @@ public partial class FlyingDutchmanAirlinesContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull);
         });
 
-        OnModelCreatingPartial(modelBuilder);
+        // OnModelCreatingPartial(modelBuilder);
     }
 
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+    // partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
