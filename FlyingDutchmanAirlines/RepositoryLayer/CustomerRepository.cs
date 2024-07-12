@@ -1,4 +1,5 @@
 using System.Linq;
+using FlyingDutchmanAirlines.DatabaseLayer.Models;
 
 namespace FlyingDutchmanAirlines.RepositoryLayer
 {
@@ -10,6 +11,8 @@ namespace FlyingDutchmanAirlines.RepositoryLayer
             {
                 return false;
             }
+
+            Customer newCustomer = new(name);
 
             return true;
         }
