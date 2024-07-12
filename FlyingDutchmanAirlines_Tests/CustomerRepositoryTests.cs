@@ -22,7 +22,7 @@ public class CustomerRepositoryTests
         CustomerRepository repository = new();
         Assert.IsNotNull(repository);
 
-        bool result = repository.CreateCustomer(null);
+        bool result = repository.CreateCustomer(null!);
         Assert.IsFalse(result);
     }
 
