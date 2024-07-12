@@ -15,4 +15,24 @@ public class CustomerRepositoryTests
         bool result = repository.CreateCustomer("Donald Knuth");
         Assert.IsTrue(result);
     }
+
+    [TestMethod]
+    public void CreateCustomer_Failure_NameIsNull()
+    {
+        CustomerRepository repository = new();
+        Assert.IsNotNull(repository);
+
+        bool result = repository.CreateCustomer(null);
+        Assert.IsFalse(result);
+    }
+
+    [TestMethod]
+    public void CreateCustomer_Failure_NameIsEmptyString()
+    {
+        CustomerRepository repository = new();
+        Assert.IsNotNull(repository);
+
+        bool result = repository.CreateCustomer(string.Empty);
+        Assert.IsFalse(result);
+    }
 }
