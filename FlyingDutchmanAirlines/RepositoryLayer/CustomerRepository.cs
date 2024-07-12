@@ -4,8 +4,12 @@ namespace FlyingDutchmanAirlines.RepositoryLayer
     {
         public bool CreateCustomer(string name)
         {
-            // PLACEHOLDER
-            return false;
+            if (string.IsNullOrEmpty(name))
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

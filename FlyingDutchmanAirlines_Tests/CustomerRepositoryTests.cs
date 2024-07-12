@@ -11,5 +11,8 @@ public class CustomerRepositoryTests
     {
         CustomerRepository repository = new();
         Assert.IsNotNull(repository);
+
+        bool result = repository.CreateCustomer("Donald Knuth");
+        Assert.IsTrue(result);
     }
 }
