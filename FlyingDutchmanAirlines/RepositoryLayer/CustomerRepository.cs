@@ -1,6 +1,7 @@
 using System.Linq;
 using FlyingDutchmanAirlines.DatabaseLayer.Models;
 using FlyingDutchmanAirlines.Exceptions;
+using Microsoft.EntityFrameworkCore;
 
 namespace FlyingDutchmanAirlines.RepositoryLayer;
 
@@ -44,8 +45,9 @@ public class CustomerRepository
         {
             throw new CustomerNotFoundException();
         }
-        
-        return new Customer(name);
+
+        return await _context.Customers.FirstOrDefaultAsync(c => c.Name == name)
+                ?? throw new CustomerNotFoundException();
     }
 
     private bool IsInvalidCustomerName(string name)
