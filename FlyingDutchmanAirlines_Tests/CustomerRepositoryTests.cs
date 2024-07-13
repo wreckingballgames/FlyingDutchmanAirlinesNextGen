@@ -63,4 +63,14 @@ public class CustomerRepositoryTests
         bool result = await repository.CreateCustomer("Donald Knuth" + invalidCharacter);
         Assert.IsFalse(result);
     }
+
+    [TestMethod]
+    public async Task CreateCustomer_Failure_DatabaseAccessError()
+    {
+        CustomerRepository repository = new(null!);
+        Assert.IsNotNull(repository);
+
+        bool result = await repository.CreateCustomer("Donald Knuth");
+        Assert.IsFalse(result);
+    }
 }
