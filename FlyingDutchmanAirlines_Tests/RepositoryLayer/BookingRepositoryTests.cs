@@ -25,6 +25,16 @@ public class BookingRepositoryTests
     [TestMethod]
     public void CreateBooking_Success()
     {
-        
+
+    }
+
+    [TestMethod]
+    [DataRow(-1, 0)]
+    [DataRow(0, -1)]
+    [DataRow(-1, -1)]
+    [ExpectedException(typeof(ArgumentException))]
+    public async Task CreateBooking_Failure_InvalidInputs(int customerID, int flightNumber)
+    {
+        await _repository.CreateBooking(customerID, flightNumber);
     }
 }
