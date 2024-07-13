@@ -17,7 +17,7 @@ public sealed class Customer
         Name = name;
     }
 
-        public static bool operator == (Customer x, Customer y)
+    public static bool operator == (Customer x, Customer y)
     {
         CustomerEqualityComparer comparer = new();
         return comparer.Equals(x, y);
