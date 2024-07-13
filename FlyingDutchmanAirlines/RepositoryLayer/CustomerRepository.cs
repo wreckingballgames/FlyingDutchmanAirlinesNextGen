@@ -5,7 +5,7 @@ namespace FlyingDutchmanAirlines.RepositoryLayer
 {
     public class CustomerRepository
     {
-        public bool CreateCustomer(string name)
+        public async Task<bool> CreateCustomer(string name)
         {
             if (IsInvalidCustomerName(name))
             {
@@ -13,6 +13,12 @@ namespace FlyingDutchmanAirlines.RepositoryLayer
             }
 
             Customer newCustomer = new(name);
+
+            using (FlyingDutchmanAirlinesContext context = new())
+            {
+                context.Customers.Add(newCustomer);
+                await context.SaveChangesAsync();
+            }
 
             return true;
         }
