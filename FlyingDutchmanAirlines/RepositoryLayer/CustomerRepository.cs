@@ -1,52 +1,51 @@
 using System.Linq;
 using FlyingDutchmanAirlines.DatabaseLayer.Models;
 
-namespace FlyingDutchmanAirlines.RepositoryLayer
+namespace FlyingDutchmanAirlines.RepositoryLayer;
+
+public class CustomerRepository
 {
-    public class CustomerRepository
+    private readonly FlyingDutchmanAirlinesContext _context;
+
+    public CustomerRepository(FlyingDutchmanAirlinesContext context)
     {
-        private readonly FlyingDutchmanAirlinesContext _context;
+        _context = context;
+    }
 
-        public CustomerRepository(FlyingDutchmanAirlinesContext context)
+    public async Task<bool> CreateCustomer(string name)
+    {
+        if (IsInvalidCustomerName(name))
         {
-            _context = context;
+            return false;
         }
 
-        public async Task<bool> CreateCustomer(string name)
+        try
         {
-            if (IsInvalidCustomerName(name))
+            Customer newCustomer = new(name);
+
+            using (_context)
             {
-                return false;
+                _context.Customers.Add(newCustomer);
+                await _context.SaveChangesAsync();
             }
-
-            try
-            {
-                Customer newCustomer = new(name);
-
-                using (_context)
-                {
-                    _context.Customers.Add(newCustomer);
-                    await _context.SaveChangesAsync();
-                }
-            }
-            catch
-            {
-                return false;
-            }
-
-            return true;
         }
-
-        public async Task<Customer> GetCustomerByName(string name)
+        catch
         {
-            return new Customer(name);
+            return false;
         }
 
-        private bool IsInvalidCustomerName(string name)
-        {
-            char[] forbiddenCharacters = {'!', '@', '#', '$', '%', '&', '*'};
-            return string.IsNullOrEmpty(name) || name.Any(x =>
-                    forbiddenCharacters.Contains(x));
-        }
+        return true;
+    }
+
+    public async Task<Customer> GetCustomerByName(string name)
+    {
+        return new Customer(name);
+    }
+
+    private bool IsInvalidCustomerName(string name)
+    {
+        char[] forbiddenCharacters = {'!', '@', '#', '$', '%', '&', '*'};
+        return string.IsNullOrEmpty(name) || name.Any(x =>
+                forbiddenCharacters.Contains(x));
     }
 }
