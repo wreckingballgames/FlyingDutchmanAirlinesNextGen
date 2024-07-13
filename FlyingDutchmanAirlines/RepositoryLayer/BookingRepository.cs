@@ -1,4 +1,5 @@
 using FlyingDutchmanAirlines.DatabaseLayer.Models;
+using FlyingDutchmanAirlines.Exceptions;
 
 namespace FlyingDutchmanAirlines.RepositoryLayer;
 
@@ -24,5 +25,16 @@ public class BookingRepository
             CustomerId = customerID,
             FlightNumber = flightNumber,
         };
+
+        try
+        {
+            _context.Bookings.Add(newBooking);
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine($"Exception during database query: {exception.Message}");
+            throw new CouldNotAddBookingToDatabaseException();
+        }
     }
 }

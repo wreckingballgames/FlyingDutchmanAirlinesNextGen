@@ -1,6 +1,6 @@
 namespace FlyingDutchmanAirlines.Exceptions;
 
-public class CouldNotAddBookingToDatabaseExceptions() : CouldNotAddEntityToDatabaseExceptions
+public class CouldNotAddBookingToDatabaseException() : CouldNotAddEntityToDatabaseException
 {
-    
+
 }
