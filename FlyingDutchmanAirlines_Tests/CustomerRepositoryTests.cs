@@ -76,6 +76,9 @@ public class CustomerRepositoryTests
     {
         Customer customer = await _repository.GetCustomerByName("Linus Torvalds");
         Assert.IsNotNull(customer);
+
+        Customer dbCustomer = _context.Customers.First();
+        Assert.AreEqual(dbCustomer, customer);
     }
 
     [TestMethod]
