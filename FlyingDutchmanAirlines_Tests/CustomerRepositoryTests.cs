@@ -10,6 +10,7 @@ namespace FlyingDutchmanAirlines_Tests.RepositoryLayer;
 public class CustomerRepositoryTests
 {
     private FlyingDutchmanAirlinesContext _context;
+    private CustomerRepository _repository;
 
     [TestInitialize]
     public void TestInitialize()
@@ -17,35 +18,29 @@ public class CustomerRepositoryTests
         DbContextOptions<FlyingDutchmanAirlinesContext> dbContextOptions = new DbContextOptionsBuilder<FlyingDutchmanAirlinesContext>()
                 .UseInMemoryDatabase("FlyingDutchman").Options;
         _context = new FlyingDutchmanAirlinesContext(dbContextOptions);
+
+        _repository = new(_context);
+        Assert.IsNotNull(_repository);
     }
 
     [TestMethod]
     public async Task CreateCustomer_Success()
     {
-        CustomerRepository repository = new(_context);
-        Assert.IsNotNull(repository);
-
-        bool result = await repository.CreateCustomer("Donald Knuth");
+        bool result = await _repository.CreateCustomer("Donald Knuth");
         Assert.IsTrue(result);
     }
 
     [TestMethod]
     public async Task CreateCustomer_Failure_NameIsNull()
     {
-        CustomerRepository repository = new(_context);
-        Assert.IsNotNull(repository);
-
-        bool result = await repository.CreateCustomer(null!);
+        bool result = await _repository.CreateCustomer(null!);
         Assert.IsFalse(result);
     }
 
     [TestMethod]
     public async Task CreateCustomer_Failure_NameIsEmptyString()
     {
-        CustomerRepository repository = new(_context);
-        Assert.IsNotNull(repository);
-
-        bool result = await repository.CreateCustomer(string.Empty);
+        bool result = await _repository.CreateCustomer(string.Empty);
         Assert.IsFalse(result);
     }
 
@@ -57,10 +52,7 @@ public class CustomerRepositoryTests
     [DataRow('*')]
     public async Task CreateCustomer_Failure_NameContainsInvalidCharacters(char invalidCharacter)
     {
-        CustomerRepository repository = new(_context);
-        Assert.IsNotNull(repository);
-
-        bool result = await repository.CreateCustomer("Donald Knuth" + invalidCharacter);
+        bool result = await _repository.CreateCustomer("Donald Knuth" + invalidCharacter);
         Assert.IsFalse(result);
     }
 
