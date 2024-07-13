@@ -65,4 +65,11 @@ public class CustomerRepositoryTests
         bool result = await repository.CreateCustomer("Donald Knuth");
         Assert.IsFalse(result);
     }
+
+    [TestMethod]
+    public async Task GetCustomerByName_Success()
+    {
+        Customer customer = await _repository.GetCustomerByName("Linus Torvalds");
+        Assert.IsNotNull(customer);
+    }
 }
