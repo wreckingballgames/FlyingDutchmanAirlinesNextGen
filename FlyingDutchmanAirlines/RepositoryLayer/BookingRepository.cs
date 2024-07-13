@@ -18,5 +18,11 @@ public class BookingRepository
             Console.WriteLine($"Argument Exception in CreateBooking! CustomerID = {customerID}, flightNumber = {flightNumber}");
             throw new ArgumentException("Invalid arguments provided");
         }
+
+        Booking newBooking = new Booking
+        {
+            CustomerId = customerID,
+            FlightNumber = flightNumber,
+        };
     }
 }
