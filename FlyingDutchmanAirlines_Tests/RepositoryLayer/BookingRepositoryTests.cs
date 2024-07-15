@@ -16,7 +16,7 @@ public class BookingRepositoryTests
         DbContextOptions<FlyingDutchmanAirlinesContext>
                 dbContextOptions = new DbContextOptionsBuilder<FlyingDutchmanAirlinesContext>()
                         .UseInMemoryDatabase("FlyingDutchman").Options;
-        _context = new FlyingDutchmanAirlinesContext(dbContextOptions);
+        _context = new FlyingDutchmanAirlinesContext_Stub(dbContextOptions);
 
         _repository = new BookingRepository(_context);
         Assert.IsNotNull(_repository);
