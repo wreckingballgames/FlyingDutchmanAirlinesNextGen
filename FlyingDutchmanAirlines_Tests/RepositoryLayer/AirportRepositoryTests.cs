@@ -32,6 +32,9 @@ public class AirportRepositoryTests
     {
         Airport airport = await _repository.GetAirportByID(0);
         Assert.IsNotNull(airport);
+        Assert.AreEqual(0, airport.AirportId);
+        Assert.AreEqual("Dallas", airport.City);
+        Assert.AreEqual("DFW", airport.Iata);
     }
 
     [TestMethod]
