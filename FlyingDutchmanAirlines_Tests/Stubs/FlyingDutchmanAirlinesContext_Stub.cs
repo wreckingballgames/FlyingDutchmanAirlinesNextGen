@@ -23,6 +23,15 @@ public class FlyingDutchmanAirlinesContext_Stub : FlyingDutchmanAirlinesContext
             throw new Exception("Database Error!");
         }
 
+        // This code does not work, I do not understand the meaning, and
+        //   there is no errata. My tests pass without it.
+        // IEnumerable<Airport> airports = pendingChanges
+        //         .Select(e => e.Entity).OfType<Airport>();
+        // if (!airports.Any())
+        // {
+        //     throw new Exception("Database Error!");
+        // }
+
         await base.SaveChangesAsync(cancellationToken);
         return 1;
     }
