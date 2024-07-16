@@ -9,7 +9,7 @@ public class FlyingDutchmanAirlinesContext_Stub : FlyingDutchmanAirlinesContext
 {
     public FlyingDutchmanAirlinesContext_Stub(DbContextOptions<FlyingDutchmanAirlinesContext> options) : base(options)
     {
-
+        base.Database.EnsureDeleted();
     }
 
     public async override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
@@ -22,7 +22,7 @@ public class FlyingDutchmanAirlinesContext_Stub : FlyingDutchmanAirlinesContext
         {
             throw new Exception("Database Error!");
         }
-        
+
         await base.SaveChangesAsync(cancellationToken);
         return 1;
     }
