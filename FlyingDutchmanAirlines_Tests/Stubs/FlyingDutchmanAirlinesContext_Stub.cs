@@ -13,9 +13,11 @@ public class FlyingDutchmanAirlinesContext_Stub : FlyingDutchmanAirlinesContext
 
     public async override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
+        await base.SaveChangesAsync(cancellationToken);
+
         return base.Bookings.First().CustomerId switch
         {
-            1 => await base.SaveChangesAsync(cancellationToken),
+            1 => 1,
             _ => throw new Exception("Database Error!"),
         };
     }
