@@ -24,9 +24,14 @@ public class BookingRepositoryTests
     }
 
     [TestMethod]
-    public void CreateBooking_Success()
+    public async Task CreateBooking_Success()
     {
+        await _repository.CreateBooking(1, 0);
+        Booking booking = _context.Bookings.First();
 
+        Assert.IsNotNull(booking);
+        Assert.AreEqual(1, booking.CustomerId);
+        Assert.AreEqual(0, booking.FlightNumber);
     }
 
     [TestMethod]
