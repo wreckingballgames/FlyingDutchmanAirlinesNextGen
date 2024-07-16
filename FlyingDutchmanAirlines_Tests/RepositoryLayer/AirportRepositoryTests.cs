@@ -12,14 +12,14 @@ public class AirportRepositoryTests
     private AirportRepository _repository;
 
     [TestInitialize]
-    public async void TestInitialize()
+    public async Task TestInitialize()
     {
         DbContextOptions<FlyingDutchmanAirlinesContext>
         dbContextOptions = new DbContextOptionsBuilder<FlyingDutchmanAirlinesContext>()
                 .UseInMemoryDatabase("FlyingDutchman").Options;
         _context = new FlyingDutchmanAirlinesContext_Stub(dbContextOptions);
 
-        Airport testAirport = new();
+        Airport testAirport = new("Dallas", "DFW");
         _context.Airports.Add(testAirport);
         await _context.SaveChangesAsync();
 

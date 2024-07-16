@@ -11,7 +11,15 @@ public partial class Airport
 
     public string Iata { get; set; } = null!;
 
-    public virtual ICollection<Flight> FlightDestinationNavigations { get; set; } = new List<Flight>();
+    public virtual ICollection<Flight> FlightDestinationNavigations { get; set; }
 
-    public virtual ICollection<Flight> FlightOriginNavigations { get; set; } = new List<Flight>();
+    public virtual ICollection<Flight> FlightOriginNavigations { get; set; }
+
+    public Airport(string city, string iata)
+    {
+        City = city;
+        Iata = iata;
+        FlightDestinationNavigations = new List<Flight>();
+        FlightOriginNavigations = new List<Flight>();
+    }
 }
