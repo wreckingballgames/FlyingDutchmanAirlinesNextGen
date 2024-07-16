@@ -12,4 +12,9 @@ public class AirportRepository
     {
         _context = context;
     }
+
+    public async Task<Airport> GetAirportByID(int airportID)
+    {
+        return new Airport();
+    }
 }

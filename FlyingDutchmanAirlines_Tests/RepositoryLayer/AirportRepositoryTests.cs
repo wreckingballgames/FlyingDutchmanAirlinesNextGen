@@ -14,6 +14,19 @@ public class AirportRepositoryTests
     [TestInitialize]
     public void TestInitialize()
     {
-        
+        DbContextOptions<FlyingDutchmanAirlinesContext>
+        dbContextOptions = new DbContextOptionsBuilder<FlyingDutchmanAirlinesContext>()
+                .UseInMemoryDatabase("FlyingDutchman").Options;
+        _context = new FlyingDutchmanAirlinesContext_Stub(dbContextOptions);
+
+        _repository = new AirportRepository(_context);
+        Assert.IsNotNull(_repository);
+    }
+
+    [TestMethod]
+    public async Task GetAirportByID_Success()
+    {
+        Airport airport = await _repository.GetAirportByID(0);
+        Assert.IsNotNull(airport);
     }
 }
