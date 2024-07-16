@@ -12,14 +12,18 @@ public class AirportRepositoryTests
     private AirportRepository _repository;
 
     [TestInitialize]
-    public void TestInitialize()
+    public async void TestInitialize()
     {
         DbContextOptions<FlyingDutchmanAirlinesContext>
         dbContextOptions = new DbContextOptionsBuilder<FlyingDutchmanAirlinesContext>()
                 .UseInMemoryDatabase("FlyingDutchman").Options;
         _context = new FlyingDutchmanAirlinesContext_Stub(dbContextOptions);
 
-        _repository = new AirportRepository(_context);
+        Airport testAirport = new();
+        _context.Airports.Add(testAirport);
+        await _context.SaveChangesAsync();
+
+        _repository = new(_context);
         Assert.IsNotNull(_repository);
     }
 
@@ -28,5 +32,12 @@ public class AirportRepositoryTests
     {
         Airport airport = await _repository.GetAirportByID(0);
         Assert.IsNotNull(airport);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public async Task GetAirportByID_Failure_InvalidInput()
+    {
+        await _repository.GetAirportByID(-1);
     }
 }

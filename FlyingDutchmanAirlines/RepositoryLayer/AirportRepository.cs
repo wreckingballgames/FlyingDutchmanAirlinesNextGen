@@ -1,5 +1,6 @@
 using System.Net.Mime;
 using FlyingDutchmanAirlines.DatabaseLayer.Models;
+using FlyingDutchmanAirlines.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
 namespace FlyingDutchmanAirlines.RepositoryLayer;
@@ -15,6 +16,13 @@ public class AirportRepository
 
     public async Task<Airport> GetAirportByID(int airportID)
     {
-        return new Airport();
+        if (airportID < 0)
+        {
+            Console.WriteLine($"Argument Exception in GetAirportByID! AirportID = {airportID}");
+            throw new ArgumentException("Invalid argument provided");
+        }
+
+        return await _context.Airports.FirstOrDefaultAsync(a => a.AirportId == airportID)
+                ?? throw new AirportNotFoundException();
     }
 }
