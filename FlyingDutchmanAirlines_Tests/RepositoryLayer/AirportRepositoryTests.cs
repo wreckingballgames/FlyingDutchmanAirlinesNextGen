@@ -54,4 +54,11 @@ public class AirportRepositoryTests
             outputStream.Dispose();
         }
     }
+
+    [TestMethod]
+    [ExpectedException(typeof(AirportNotFoundException))]
+    public async Task GetAirportByID_Failure_InvalidAirportID()
+    {
+        await _repository.GetAirportByID(100);
+    }
 }
