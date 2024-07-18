@@ -20,11 +20,24 @@ public class FlightRepositoryTests
         _context = new FlyingDutchmanAirlinesContext_Stub(dbContextOptions);
 
         Flight testFlight = new();
+        testFlight.FlightNumber = 1;
+        testFlight.Origin = 1;
+        testFlight.Destination = 2;
         _context.Flights.Add(testFlight);
         await _context.SaveChangesAsync();
 
-        _repository = new(_context);
+        _repository = new FlightRepository(_context);
         Assert.IsNotNull(_repository);
+    }
+
+    [TestMethod]
+    public async Task GetFlightByFlightNumber_Success()
+    {
+        Flight testFlight = await _repository.GetFlightByFlightNumber(1, 1, 2);
+        Assert.IsNotNull(testFlight);
+        Assert.AreEqual(testFlight.FlightNumber, 1);
+        Assert.AreEqual(testFlight.Origin, 1);
+        Assert.AreEqual(testFlight.Destination, 2);
     }
 
     [TestMethod]
