@@ -1,3 +1,5 @@
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using FlyingDutchmanAirlines.DatabaseLayer.Models;
 using FlyingDutchmanAirlines.Exceptions;
 
@@ -7,12 +9,22 @@ public class BookingRepository
 {
     private readonly FlyingDutchmanAirlinesContext _context;
 
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public BookingRepository()
+    {
+        if (Assembly.GetExecutingAssembly().FullName ==
+                Assembly.GetCallingAssembly().FullName)
+        {
+            throw new Exception("This constructor should only be used for testing");
+        }
+    }
+
     public BookingRepository(FlyingDutchmanAirlinesContext context)
     {
         _context = context;
     }
 
-    public async Task CreateBooking(int customerID, int flightNumber)
+    public virtual async Task CreateBooking(int customerID, int flightNumber)
     {
         if (!customerID.IsPositive() || !flightNumber.IsPositive())
         {
